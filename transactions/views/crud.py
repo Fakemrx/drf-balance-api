@@ -8,6 +8,11 @@ class TransactionAPICreate(generics.CreateAPIView):
     serializer_class = TransactionSerializer
     queryset = Transaction.objects.all()
 
+    def perform_create(self, serializer):
+        user = self.request.user
+        if user:
+            serializer.save(user=user)
+
 
 class TransactionAPIRUD(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = TransactionSerializer

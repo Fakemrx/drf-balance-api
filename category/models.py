@@ -4,7 +4,7 @@ from user.models import User
 
 
 class CategoryList(models.Model):
-    name = models.TextField(max_length=60, verbose_name='Название категории')
+    name = models.TextField(unique=True, max_length=60, verbose_name='Название категории')
 
     class Meta:
         verbose_name = 'Категория'
@@ -23,4 +23,4 @@ class Category(models.Model):
         verbose_name_plural = 'Категории пользователя'
 
     def __str__(self):
-        return f'"{self.user.fio}" - {self.category.name}'
+        return f'{self.category.name}'
