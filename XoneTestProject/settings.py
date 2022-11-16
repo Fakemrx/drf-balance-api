@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'user',
     'category',
     'transactions',
+    'django_filters'
 ]
 
 MIDDLEWARE = [
