@@ -4,6 +4,7 @@ from django.db import models
 
 class User(AbstractUser):
     fio = models.TextField(max_length=100, null=False, blank=False, verbose_name='ФИО')
+    account_balance = models.DecimalField(default=0, decimal_places=2, max_digits=20, verbose_name='Баланс счёта')
 
     REQUIRED_FIELDS = ['fio']
 
