@@ -16,7 +16,7 @@ class TransactionsAPIView(generics.ListAPIView):
                 return Transaction.objects.filter(user=self.request.user.id).order_by(sort)
             return Transaction.objects.filter(user=self.request.user.id)
         else:
-            return Transaction.objects.all()  # Пока что для тестов, потом будет -> filter(user=0)
+            return Transaction.objects.filter(user=0)
     serializer_class = TransactionSerializer
     filter_backends = (DjangoFilterBackend,)
     filterset_class = TransactionFilter
