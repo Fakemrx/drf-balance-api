@@ -2,18 +2,6 @@ from rest_framework import serializers
 
 from category.models import UserCategories
 from transactions.models import Transaction
-from user.models import User
-
-
-class UserGetter(serializers.ModelSerializer):
-    def get_user(self):
-        return self.context['request'].user.id
-
-    user = property(get_user)
-
-    class Meta:
-        model = User
-        fields = ('id',)
 
 
 class TransactionSerializer(serializers.ModelSerializer):
