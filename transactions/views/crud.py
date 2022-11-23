@@ -1,12 +1,13 @@
 from rest_framework import generics, mixins, viewsets, response, status
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
 from category.models import UserCategories
 from transactions.models import Transaction
-from transactions.serializers import TransactionSerializer
+from transactions.serializers import TransactionSerializer, TransactionRUDSerializer
 
 
-class TransactionAPIRetrieveCreate(viewsets.ModelViewSet):
+class TransactionAPICreate(viewsets.ModelViewSet):
     queryset = Transaction.objects.all()
     serializer_class = TransactionSerializer
 
@@ -17,5 +18,6 @@ class TransactionAPIRetrieveCreate(viewsets.ModelViewSet):
 
 
 class TransactionAPIRUD(generics.RetrieveUpdateDestroyAPIView):
-    serializer_class = TransactionSerializer
+    permission_classes = [IsAuthenticated,]
+    serializer_class = TransactionRUDSerializer
     queryset = Transaction.objects.all()
